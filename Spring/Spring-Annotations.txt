@@ -1,0 +1,65 @@
+Spring Boot Main annotations
+--------------------------------------------------
+1. @SpringBootApplication   :- 1. This annotation is used on main method which starts the spring boot application.
+                               2. It is a combination of 3 annotations (@ComponentScan, @EanbleAutoConfiguration, @Configuration).
+
+2. @ComponentScan           :- 1. This annotation scans the beans to get visible for IOC container.
+                               2. Parent packages can be provided to this annotation to register the beans in IOC container.
+
+3. @EanbleAutoConfiguration :- 1. This annotation autoconfugres the springboot application based upon the jar dependency added in pom.xml
+                               2. It will autoconfigure the configuration part for any jar provided in classpath.
+
+4. @Configuration           :- 1. This annotation is used to place at class level.
+                               2. It is used to declare the beans that can be registered at bootup time in IOC container.
+
+
+Stereotype annotation
+----------------------------------------
+1.  @Component              :- 1. This is the Main stereotype annotation.
+                               2. All the other steroetype annotations (@Service, @RestController/@Controller, @Repository) are derived from this annotation.
+                               3. Basically these annotations are used to create beans automatically into IOC container.
+                               4. It is a class level annotation.
+                               5. It is used to detect our custom beans without writing any explicit code.
+                               6. Spring will scan for the classes annotated with @Component, Instantiate them and inject them into the specified dependencies.
+
+2.  @Service                :- 1. This is the derived annotation from the @Component annotations.
+                               2. It acts similar to @Component but @Service will define the class contains the bussiness logic/ Service methods.
+
+3.  @RestController         :- 1. This is the derived annotation from the @Component annotations.
+   /@Controller                2. It indicates that it is the class where all the API requests are recieved and handled further.
+
+5.  @Repository             :- 1. This is the derived annotation from the @Component annotations.
+                               2. It indicates that it can make communication with DB repositories and handle requests further.
+
+Spring Core related Annotations:
+----------------------------------------------------
+1.  @Configuration          :- 1. It is a class level annotation used to define that the class holds one or more bean methods.
+                               2. This annotation helps to create bean definitions and service requests at the run time.
+                               
+2.  @Bean                   :- 1. It is a method level annotation.
+				               2. It indicated that a method annotated with @Bean handled by spring container.
+                               3. It is an alternative of XML <Bean>
+
+3.  @Autowired              :- 1. It can be applied on fields, setter methods, constructor.
+				               2. It will inject the object dependency implicitly.
+				               3. It internally uses setter or constructor injection.
+				               4. Autowiring cannot be used on Primitive or String values.
+                               5. Autowiring is nothing but you are referencing the object(or Bean) of the class in your dependent class. As int, double, byte all these not objects but primitive types they cannot be autowired.
+
+4.  @Qualifier              :- 1. It is used to speccify the bean name if multiple beans are implementing same interface.
+
+5.  @Primary                :- 1. It is used to represent as a primary bean that to be used at the run time if multiple beans are implementing same interface.
+
+6.  @Lazy                   :- 1. It is used to load the beans when ever an object/instance is created.
+                               2. By default spring load all the beans are loaded into IOC container eagerly.
+                               3. This annotation indicates that until unless an object is initialized for bean do not load it into IOC container.
+
+7.  @Value                  :- 1. It is used to load the metadata into classes.
+                            :- 2. Signature of using @Value is @Value(${"key"}); .
+
+8.  @PropertySource         :- 1. It will load the custom properties file into class.
+                               2. It can be used on class level.
+
+9.  @ConfigurationProperties
+@Profile
+@Scope
