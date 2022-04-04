@@ -37,13 +37,13 @@ Spring Core related Annotations:
                                2. This annotation helps to create bean definitions and service requests at the run time.
                                
 2.  @Bean                   :- 1. It is a method level annotation.
-				               2. It indicated that a method annotated with @Bean handled by spring container.
+				                   2. It indicated that a method annotated with @Bean handled by spring container.
                                3. It is an alternative of XML <Bean>
 
 3.  @Autowired              :- 1. It can be applied on fields, setter methods, constructor.
-				               2. It will inject the object dependency implicitly.
-				               3. It internally uses setter or constructor injection.
-				               4. Autowiring cannot be used on Primitive or String values.
+				                   2. It will inject the object dependency implicitly.
+				                   3. It internally uses setter or constructor injection.
+				                   4. Autowiring cannot be used on Primitive or String values.
                                5. Autowiring is nothing but you are referencing the object(or Bean) of the class in your dependent class. As int, double, byte all these not objects but primitive types they cannot be autowired.
 
 4.  @Qualifier              :- 1. It is used to speccify the bean name if multiple beans are implementing same interface.
@@ -60,6 +60,58 @@ Spring Core related Annotations:
 8.  @PropertySource         :- 1. It will load the custom properties file into class.
                                2. It can be used on class level.
 
-9.  @ConfigurationProperties
-@Profile
-@Scope
+9.  @ConfigurationProperties:- 1. This annotation is used to bind the application properties to the object of a class on which it is annotated.
+                               2. This annotation can be used on class level.
+
+10. @Profile                :- 1. This annotation is used to specify the profile based on environment application properties.
+                               2. It can be used on class level/method level to specify the profile based properties file to be loaded.
+                                
+11. @Scope                  :- 1. This annotation is used to specify the scope of the bean.
+                               2. There are different kind of bean scopes are present singleton,prototype,request,session etc..,
+                               3. Singleton is default bean scope in springboot so that this bean state is same across the board on its runtime.
+
+REST API related annotations:
+------------------------------------------------------------
+1.  @RequestBody            :- 1. This annotation is used to map the reuested body to the class object.
+                               2. This helps in deserialization of object and assigning the values to the object specified.
+                               3. It will automatically deserialize the object.
+
+2.  @PathVariable           :- 1. This annotation is used to map the value as the path variable.
+                               2. It will be a part of url as an input.
+                               3. This annotation force the user to pass the value if not throws 404.
+                               Eg :- www.shareef.com/ReqById/121
+                              
+3.  @RequestParam           :- 1. This annotation is used when the value to which the variable is specified in the URL itself.
+                               2. It is also an part of URL with its assigned variable name.
+                               3. This annotation will not force user to have value and dosent throw 404 if not specified.
+                               Eg :- www.shareef.com/ReqById/Id?=121
+
+4.  @RestControllerAdvice   :- 1. This annotation is used to handle the custom exceptions rised with in the controller itself.
+                               2. This is an class level annotation which consists of methods annotated with @ExceptionHandler.
+
+Spring Data JPA related annotations:
+----------------------------------------------------------------
+1.  @Entity                 :- 1. JPA @Entity is used to declare the class object should be used to perform the DB operations.
+                               2. This is a Marker just like serializable interface.
+                               3. It maps the entity to the database table.
+
+2.  @Table                  :- 1. This annotation is used to specify the details and the table name.If it is not used JPA will declare it as per class name.
+                               2. It provides various functionalities like overriding the schema enforcing uniqueconstraints on the columns of a table etc..,
+
+3.  @Id                     :- 1. It specifies the primary key columns of the table.
+                               2. It can be an natural id or generated Id column.
+
+4.  @Column                 :- 1. If column name should be custom in db then this annotation used to set the name propertie in the java entity.
+
+5.  @Transactional          :- 1. @Transactional annotation is used when you want the certain method/class(=all methods inside) to be executed in a transaction.
+
+6.  @Query                  :- 1. @Query is used to specify the SQL query over a method in a repository. It can be written in value.
+
+7.  @GeneratedValue         :- 1. This annotation is used with @Id  to define the primary key column in the table.
+		                         2. This supports the primary key column for generation strategies.
+                               3. We have four strategies pre-defined.
+
+8. @Modifying               :- 1. This annotation is used on a method level with @Query  annotation.
+		                         2. Queries that require a @Modifying annotation include INSERT, UPDATE, DELETE, and DDL statements.
+		                         3. Adding @Modifying annotation indicates the query is not for a SELECT query.
+
